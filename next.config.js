@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+/** @type {import('next').NextConfig} */
 
-module.exports = nextConfig
+const nextConfig = {
+  basePath: '/TableOCR',
+  assetPrefix: '/TableOCR',
+  output: "export",
+};
+
+module.exports = nextConfig;
+

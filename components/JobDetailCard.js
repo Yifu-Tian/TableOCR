@@ -40,7 +40,10 @@ export default function JobDetailCard({public_id, state, created_at, providers})
                         <hr/>
                         <div className="flex flex-wrap gap-2">
                             {providers.split(',').map(provider => (
-                                <button className="py-2 px-4 bg-gray-800 text-white font-semibold rounded-md" onClick={() => handleFileDownload(provider)}>
+                                <button 
+				  key={provider}
+				  className="py-2 px-4 bg-gray-800 text-white font-semibold rounded-md" 
+				  onClick={() => handleFileDownload(provider)}>
                                     {provider}
                                 </button>
                             ))}
