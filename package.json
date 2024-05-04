@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next build && next export",
+    "deploy": "npm run export && gh-pages -d out",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,7 +16,7 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "json-as-xlsx": "^2.5.3",
-    "next": "13.4.12",
+    "next": "^13.4.12",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",

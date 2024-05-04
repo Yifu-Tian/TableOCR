@@ -16,7 +16,12 @@ export default function Home() {
       method: 'POST',
       body: formData
     })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Server responded with an error: ' + res.status);
+      }
+      return res.json();
+    })
     .then(data => console.log("result", data))
     .catch(err => console.log(err))
     .finally(() => setUploading(false))
