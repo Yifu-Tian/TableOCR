@@ -5,6 +5,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.mjs';
 export async function renderPdfPageWithTable(file, setProgress){
   const pdf = await pdfjsLib.getDocument(URL.createObjectURL(file)).promise;
   const numPages = pdf.numPages;
+  const images = [];
   let imageData = null;
   let foundTable = false;
 
@@ -18,19 +19,18 @@ export async function renderPdfPageWithTable(file, setProgress){
     canvas.width = viewport.width;
     await page.render({ canvasContext: context, viewport }).promise;
     const dataUrl = canvas.toDataURL();
-
     const { data: { text } } = await Tesseract.recognize(canvas, 'eng');
     if (text.includes('Table')) {
       imageData = dataUrl;
+      images.push(imageData);
       foundTable = true;
-      break;
     }
   }
 
   if (!imageData) {
     throw new Error('No table found in the PDF.');
   }
-
-  return imageData;
+  console.log(images)
+  return images;
 };
 

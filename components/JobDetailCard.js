@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { format } from 'date-fns';
 import { downloadExcel } from '@/lib/helper';
 import { BiRefresh } from "react-icons/bi"
 import { FaTrashAlt } from 'react-icons/fa';
-
 export default function JobDetailCard({ public_id, state, created_at, providers }){
   const [status, setStatus] = useState(state);
   const [loading, setLoading] = useState(false);
@@ -60,7 +59,7 @@ export default function JobDetailCard({ public_id, state, created_at, providers 
         <>
           <p className="font-medium">ID: {public_id}</p>
           <p className="font-medium">
-            Created at: {format(new Date(created_at), 'dd-MMM-yyyy HH:MM:SS')}
+            Created at: {created_at ? format(new Date(created_at), 'dd-MMM-yyyy HH:mm:SS') : 'Invalid Date'}
           </p>
           <p className="mt-2">Status: {status}</p>
           {status === 'finished' && (
